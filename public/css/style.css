@@ -1,0 +1,178 @@
+/* Base styles */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f2f9ff;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.btn-hero {
+  background-color: #00bcd4;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+}
+
+.btn-hero:hover {
+  background-color: #0097a7;
+}
+
+/* Login Page Background */
+body.login-page {
+  background: linear-gradient(to bottom right, #00bcd4, #2196f3);
+  color: white;
+}
+
+/* Testimonial Full-Width Section */
+.testimonial-section {
+  width: 100%;
+  background-color: #f8f9fa;
+  padding: 4rem 0;
+}
+
+/* Bootstrap Container Already Handles Layout */
+.testimonial-section .container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Carousel Item Layout */
+.carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 460px;
+  padding: 1rem;
+}
+
+/* Testimonial Card */
+.testimonial-slide {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.testimonial-slide blockquote p {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.testimonial-slide footer {
+  color: #666;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+/* Avatar Styling */
+.avatar {
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border: 4px solid #00bcd4;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+/* Image Slide Styling */
+.carousel-item img.img-fluid {
+  max-height: 300px;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* Carousel Indicators */
+.carousel-indicators [data-bs-target] {
+  background-color: #00bcd4;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+
+/* Carousel Controls (Optional Styling) */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #00bcd4;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .btn-hero {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .testimonial-slide {
+    padding: 1.5rem;
+  }
+
+  .carousel-item {
+    min-height: 380px;
+  }
+}
+.page-with-bg {
+  background: url("/images/beach.jpg") no-repeat center center / cover;
+  min-height: 100vh;
+  padding-top: 80px;
+  color: darkblue;
+}
+.white-line {
+  border: none;
+  height: 3px;
+  background-color: white;
+  margin: 0;
+}

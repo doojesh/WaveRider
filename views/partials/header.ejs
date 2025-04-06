@@ -1,0 +1,100 @@
+<nav
+  class="navbar navbar-expand-lg navbar-dark bg-transparent position-absolute w-100 z-3"
+>
+  <div class="container">
+    <a class="navbar-brand fw-bold text-white" href="/">Wave Rider</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <% if (!session.userId) { %>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/register">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/about">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/contact">Contact Us</a>
+        </li>
+        <% } else { %> <% if (session.userName) { %>
+        <li class="nav-item d-flex align-items-center">
+          <span class="nav-link text-white">
+            Hi, <%= session.userName.split(" ")[0] %> 👋
+          </span>
+        </li>
+        <% } %>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/about">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/services">Our Excursions</a>
+        </li>
+        <% if (session.role === 'user') { %>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/wishlist">Wishlist</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/bookings">My Bookings</a>
+        </li>
+        <% } %>
+        <% if (session.role === 'admin') { %>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle text-white"
+            href="#"
+            id="adminDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            ⚙️ Admin Panel
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+              <a class="dropdown-item" href="/admin/services/new"
+                >➕ Add Services</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="/admin/booking-dashboard"
+                >📁 All Bookings</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="/admin/analytics">📊 Analytics</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/admin/users">👥 Manage Users</a>
+            </li>
+          </ul>
+        </li>
+        <% } %>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/contact">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/logout">Logout</a>
+        </li>
+
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>

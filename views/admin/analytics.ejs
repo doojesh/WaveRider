@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Admin Analytics</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="/css/style.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body class="page-with-bg">
+    <%- include("../partials/header") %>
+    <br /><br />
+    <hr class="white-line" />
+
+    <div class="container mt-4">
+      <h2 class="text-white mb-4 text-center">
+        📊 Booking Analytics Dashboard
+      </h2>
+
+      <div class="row text-center text-white mb-5">
+        <div class="col-md-3">
+          <div class="p-3 bg-primary rounded shadow">
+            <h5>📅 Total Bookings</h5>
+            <h3><%= totalBookings %></h3>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="p-3 bg-success rounded shadow">
+            <h5>💸 Total Revenue (Rs)</h5>
+            <h3><%= totalRevenue %></h3>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="p-3 bg-info rounded shadow">
+            <h5>👥 Total Users</h5>
+            <h3><%= totalUsers %></h3>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <% const sortedServices =
+          Object.entries(bookingCountsByService).sort((a, b) => b[1] - a[1]);
+          const topService = sortedServices.length > 0 ? sortedServices[0][0] :
+          'N/A'; %>
+          <div class="p-3 bg-warning text-dark rounded shadow">
+            <h5>🏆 Top Service</h5>
+            <h3><%= topService %></h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-md-6">
+          <div class="bg-white rounded p-4 shadow">
+            <h5 class="text-center">📊 Bookings per Service</h5>
+            <canvas id="bookingChart"></canvas>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="bg-white rounded p-4 shadow">
+            <h5 class="text-center">💸 Revenue per Service</h5>
+            <canvas id="revenueChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include("../partials/footer") %>
+
+    <script>
+      const bookingLabels = JSON.parse(
+        `<%- JSON.stringify(Object.keys(bookingCountsByService)) %>`
+      );
+      const bookingData = JSON.parse(
+        `<%- JSON.stringify(Object.values(bookingCountsByService)) %>`
+      );
+
+      const revenueLabels = JSON.parse(
+        `<%- JSON.stringify(Object.keys(revenueByService)) %>`
+      );
+      const revenueData = JSON.parse(
+        `<%- JSON.stringify(Object.values(revenueByService)) %>`
+      );
+
+      new Chart(document.getElementById("bookingChart"), {
+        type: "bar",
+        data: {
+          labels: bookingLabels,
+          datasets: [
+            {
+              label: "Bookings",
+              data: bookingData,
+              backgroundColor: "rgba(54, 162, 235, 0.7)",
+            },
+          ],
+        },
+      });
+
+      new Chart(document.getElementById("revenueChart"), {
+        type: "pie",
+        data: {
+          labels: revenueLabels,
+          datasets: [
+            {
+              label: "Revenue (Rs)",
+              data: revenueData,
+              backgroundColor: [
+                "#007bff",
+                "#28a745",
+                "#ffc107",
+                "#dc3545",
+                "#17a2b8",
+                "#6f42c1",
+              ],
+            },
+          ],
+        },
+      });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

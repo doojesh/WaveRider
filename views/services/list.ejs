@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Our Boat Trips</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="/css/style.css" rel="stylesheet" />
+  </head>
+  <body class="page-with-bg">
+    <%- include("../partials/header") %>
+    <br /><br />
+    <hr class="white-line" />
+    <div class="container mt-5">
+      <h2 class="text-center text-white mb-4">Available Boat Excursions</h2>
+      <div class="row">
+        <% services.forEach(service => { %>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow">
+            <img
+              src="<%= service.image %>"
+              class="card-img-top"
+              alt="<%= service.description %>"
+            />
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div>
+                <h5 class="card-title"><%= service.code %></h5>
+                <p class="card-text"><%= service.description %></p>
+                <p class="text-primary fw-bold">Rs <%= service.price %></p>
+              </div>
+
+              <% if (session.userId && session.role !== 'admin') { %>
+              <form
+                action="/wishlist/add/<%= service._id %>"
+                method="POST"
+                class="mt-3"
+              >
+                <button type="submit" class="btn btn-outline-primary w-100">
+                  Add to Wishlist
+                </button>
+              </form>
+              <% } else if (!session.userId) { %>
+              <div class="mt-3">
+                <a href="/login" class="btn btn-outline-secondary w-100">
+                  Login to Add to Wishlist
+                </a>
+              </div>
+              <% } %>
+
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <%- include("../partials/footer") %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
